@@ -1,4 +1,5 @@
-class GerenciadorVeiculos<T> {
+import { Veiculo } from "../interface/Veiculo";
+export class GerenciadorVeiculos<T extends Veiculo> {
   veiculo: T[] = [];
 
   adicionar(veiculo: T): void {
@@ -13,7 +14,7 @@ class GerenciadorVeiculos<T> {
     return false;
   }
 
-  listar(): T[] {
+  listarVeiculos(): T[] {
     return this.veiculo;
   }
 }
