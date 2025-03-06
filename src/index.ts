@@ -3,6 +3,12 @@ import { Moto } from "./interface/Moto";
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
 import { Veiculo } from "./interface/Veiculo";
+import {
+  filtrarPorAno,
+  filtrarPorMarca,
+  filtrarPorModelo,
+} from "./utils/FiltroVeiculos";
+import { gerarRelatorio } from "./utils/RelatorioVeiculos";
 const meuCarro: Carro = {
   marca: "Toyota",
   modelo: "Corolla",
@@ -59,12 +65,6 @@ estoque.removerEstoque("Civic", 3);
 // Consultando estoque de "Civic" novamente
 console.log("Estoque após remoção:", estoque.consultarEstoque("Civic"));
 
-// Importando as funções de filtro para utilizá-las no código
-import {
-  filtrarPorAno,
-  filtrarPorMarca,
-  filtrarPorModelo,
-} from "./utils/FiltroVeiculos";
 // Criando uma lista de veículos, que são objetos com propriedades como modelo, ano e marca
 const veiculos: Veiculo[] = [
   { modelo: "Civic", ano: 2020, marca: "Honda", acelerar: () => "" },
@@ -77,3 +77,14 @@ console.log("Veículos de 2021:", filtrarPorAno(veiculos, 2021));
 console.log("Veículos da marca Honda:", filtrarPorMarca(veiculos, "Honda"));
 // Filtrando os veículos pelo modelo "Civic" e exibindo o resultado
 console.log("Veículo modelo Civic:", filtrarPorModelo(veiculos, "Civic"));
+
+// Importando a função de gerar relatório para utilizá-la no código
+
+// Criando uma lista de veículos, com informações de modelo, ano e marca
+const veiculo: Veiculo[] = [
+  { modelo: "Civic", ano: 2020, marca: "Honda", acelerar: () => "" },
+  { modelo: "Corolla", ano: 2021, marca: "Toyota", acelerar: () => "" },
+  { modelo: "CB 500", ano: 2022, marca: "Honda", acelerar: () => "" },
+];
+// Gerando e exibindo o relatório de veículos
+console.log("Relatório de Veículos:\n", gerarRelatorio(veiculo));
