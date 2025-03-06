@@ -2,6 +2,7 @@ import { Carro } from "./interface/Carro";
 import { Moto } from "./interface/Moto";
 import { GerenciadorVeiculos } from "./classes/GerenciadorVeiculos";
 import { EstoqueVeiculos } from "./classes/EstoqueVeiculos";
+import { Veiculo } from "./interface/Veiculo";
 const meuCarro: Carro = {
   marca: "Toyota",
   modelo: "Corolla",
@@ -30,15 +31,14 @@ gerenciadorCarros.adicionar({
   ano: 2020,
   marca: "Honda",
   quantidadePortas: 4,
-  acelerar: () => "O carro está acelerando!"
+  acelerar: () => "O carro está acelerando!",
 });
 gerenciadorMotos.adicionar({
   modelo: "CB 500",
   ano: 2021,
   marca: "Honda",
   cilindradas: 500,
-  acelerar: () => "A moto está acelerando!"
-
+  acelerar: () => "A moto está acelerando!",
 });
 // Listando os veículos cadastrados
 console.log("Lista de Carros:", gerenciadorCarros.listarVeiculos());
@@ -47,7 +47,6 @@ console.log("Lista de Motos:", gerenciadorMotos.listarVeiculos());
 gerenciadorCarros.remover("Civic");
 // Exibindo a lista após remoção
 console.log("Após remoção:", gerenciadorCarros.listarVeiculos());
-
 
 const estoque = new EstoqueVeiculos();
 // Adicionando veículos ao estoque
@@ -60,3 +59,21 @@ estoque.removerEstoque("Civic", 3);
 // Consultando estoque de "Civic" novamente
 console.log("Estoque após remoção:", estoque.consultarEstoque("Civic"));
 
+// Importando as funções de filtro para utilizá-las no código
+import {
+  filtrarPorAno,
+  filtrarPorMarca,
+  filtrarPorModelo,
+} from "./utils/FiltroVeiculos";
+// Criando uma lista de veículos, que são objetos com propriedades como modelo, ano e marca
+const veiculos: Veiculo[] = [
+  { modelo: "Civic", ano: 2020, marca: "Honda", acelerar: () => "" },
+  { modelo: "Corolla", ano: 2021, marca: "Toyota", acelerar: () => "" },
+  { modelo: "CB 500", ano: 2022, marca: "Honda", acelerar: () => "" },
+];
+// Filtrando os veículos do ano de 2021 e exibindo o resultado
+console.log("Veículos de 2021:", filtrarPorAno(veiculos, 2021));
+// Filtrando os veículos da marca "Honda" e exibindo o resultado
+console.log("Veículos da marca Honda:", filtrarPorMarca(veiculos, "Honda"));
+// Filtrando os veículos pelo modelo "Civic" e exibindo o resultado
+console.log("Veículo modelo Civic:", filtrarPorModelo(veiculos, "Civic"));
